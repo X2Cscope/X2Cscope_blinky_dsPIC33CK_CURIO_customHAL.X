@@ -1,4 +1,4 @@
-# MPLAB X Project: X2Cscope_blinky_dsPIC33CK_LVMC_customHAL
+# MPLAB X Project: X2Cscope_blinky_dsPIC33CK_CURIO_customHAL
 
 This is a X2Cscope demo project for [Low Voltage Motor Control (LVMC)](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM330031) development board and [dsPIC33CK256MP508](https://www.microchip.com/wwwproducts/en/dsPIC33CK256MP508) microcontroller that is available as a PIM (Plug in Module). 
 
@@ -9,7 +9,7 @@ The purpose is to demonstrate how to integrate X2Cscope ot a custom/bare applica
 
 The code functionality is minimalistic in order to avoid unneceseary confusion. The firmware generates a digital sawtooth and a sine signal. There is LED1 that is blinking with the sawtooth signal's period. The LED2 can be controlled manually by the [X2Cscope run-time debugger tool](https://x2cscope.github.io/). The state of the SW1 can be read out by X2Cscope.
 
-![HW setup](doc/LVMC_Blinky_Connectors.gif)
+![HW setup](doc/dsPIC33CK_curiosity.jpg)
 ![X2Cscope](doc/Scope_Animated.gif)
 
 ## Getting Started
@@ -42,23 +42,18 @@ The X2Cscope tool uses the UART to transfer data from and to the HW. To use this
 
 ## Hardware
 
-* **LVMC dev board:** [DM330031](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM330031) Low voltage motor control development board with [dsPIC33CK256MP508] (https://www.microchip.com/wwwproducts/en/dsPIC33CK256MP508) MCU populated on board
+* **dsPIC33CK Curiosity:** [DM330030](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM330030) Curiosity Development Board with [dsPIC33CK256MP508] (https://www.microchip.com/wwwproducts/en/dsPIC33CK256MP508) MCU populated on board
 
 ### Connectors used:
 
-![Block Diagram](doc/BlockDiagram_HW_Setup.png)
-
-* **J1/J2:** 24V Power supply
-* **J13 USB:** PICkit on board 4 (PKOB4) programmer debugger
-* **J6 USB-UART:** Used to connect UART to computer 
+* **J7 USB:** PICkit on board 4 (PKOB4) programmer debugger with integrated USB-UART converter
 
 ### Configuration
 
-LVMC board is used in the default configuration. 
+Curiosity board is used in the default configuration. 
 
-The LVMC board is capable to configure different signal routing modes by zero Ohm jumper resistors. For details see the [LVMC user guide](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM330031). 
+The the curiosity board is capable to configure different communication routing modes by zero Ohm jumper resistors. For details use the board GUIDE.
 
-* **UART:** J6 MCP2200 USB-UART chip is used for X2Cscope run-time debugging 
 ## Peripheral settings and I/O connections: 
 
 **UART:**
@@ -74,14 +69,14 @@ The LVMC board is capable to configure different signal routing modes by zero Oh
 
 **IO**
 
-| PIN | PORT   | Function |
-| ----|--------|----------|
-|  14 | RD13   | UART1 TX |
-|  13 | RD14   | UART1 RX |
-|  37 | RE6    | IO_LED1  |
-|  39 | RE7    | IO_LED2  |
-|  59 | RE11   | IO_SW1   |
-|  62 | RE12   | IO_SW2   |
+| J2  | PIN | PORT   | Function |
+| --- | ----|--------|----------|
+|  41 |  68 | RD4/RP68   | UART1 TX |
+|  43 |  69 | RD3/RP67   | UART1 RX |
+|  42 |  37 | RE6    | IO_LED1  |
+|  44 |  24 | RE5    | IO_LED2  |
+|  40 |  39 | RE7    | IO_SW1   |
+|  38 |  42 | RE8    | IO_SW2   |
 
    Peripherals are configured manually in the HAL.c and X2Cscope.c files.
 

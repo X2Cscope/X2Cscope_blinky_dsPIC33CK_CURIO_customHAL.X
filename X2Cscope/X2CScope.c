@@ -29,8 +29,8 @@ void X2CScope_Init(void)
     /************************************************/
     /*    Configure IO for UART and X2Cscope        */
     __builtin_write_RPCON(0x0000);
-    RPOR22bits.RP77R = 0x0001; //RD13->UART1:U1TX
-    RPINR18bits.U1RXR = 0x004E; //RD13->UART1:U1TX    
+    RPOR18bits.RP68R = 0x0001; //RD4/RP35->UART1:U1TX
+    RPINR18bits.U1RXR = 67;     //RD3/RP67->UART1:U1TX    
     __builtin_write_RPCON(0x0800);
     
     U1BRG = 27; //115200 baud @50MHXZ UART clock

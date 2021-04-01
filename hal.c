@@ -17,8 +17,8 @@ void initHardware(void){
     TRISB = 0xFFFD;
     TRISC = 0xFFFF;
     TRISD = 0xDFFF;
-    TRISE = 0xFF3F;
-    
+    TRISE = 0xFF9F;
+
     /****************************************************************************
      * Setting the Analog/Digital Configuration SFR(s)
      ***************************************************************************/

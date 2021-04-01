@@ -46,16 +46,16 @@ void initHardware(void);
 #define IO_LED1_Toggle()           (_LATE6 ^= 1)
 #define IO_LED1_GetValue()         _RE6
 
-#define IO_LED2_SetHigh()          (_LATE7 = 1)
-#define IO_LED2_SetLow()           (_LATE7 = 0)
-#define IO_LED2_Toggle()           (_LATE7 ^= 1)
-#define IO_LED2_GetValue()         _RE7
+#define IO_LED2_SetHigh()          (_LATE5 = 1)
+#define IO_LED2_SetLow()           (_LATE5 = 0)
+#define IO_LED2_Toggle()           (_LATE5 ^= 1)
+#define IO_LED2_GetValue()         _RE5
 
 /**
  * Switch HAL functions
  */
-#define IO_SW1_GetValue()         _RE11
-#define IO_SW2_GetValue()         _RE12
+#define IO_SW1_GetValue()         _RE7
+#define IO_SW2_GetValue()         _RE8
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
