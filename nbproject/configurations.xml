@@ -31,6 +31,7 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
       <itemPath>MyConfig.mc3</itemPath>
+      <itemPath>X2Cscope_blinky_dsPIC33CK_LVMC_customHAL.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
