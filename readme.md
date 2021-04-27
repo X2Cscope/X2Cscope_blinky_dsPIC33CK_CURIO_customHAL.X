@@ -1,6 +1,6 @@
 # MPLAB X Project: X2Cscope_blinky_dsPIC33CK_CURIO_customHAL
 
-This is a X2Cscope demo project for [Low Voltage Motor Control (LVMC)](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM330031) development board and [dsPIC33CK256MP508](https://www.microchip.com/wwwproducts/en/dsPIC33CK256MP508) microcontroller that is available as a PIM (Plug in Module). 
+This is a X2Cscope demo project for [dsPIC33CK Curiosity Development Board](https://www.microchip.com/developmenttools/ProductDetails/PartNO/DM330030) development board and [dsPIC33CK256MP508](https://www.microchip.com/wwwproducts/en/dsPIC33CK256MP508) microcontroller that is populated on the board.
 
 The purpose is to demonstrate how to integrate X2Cscope to a custom/bare application.
 
