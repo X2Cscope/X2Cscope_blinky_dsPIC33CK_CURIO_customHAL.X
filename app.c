@@ -10,7 +10,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "hal.h"
-#include "X2CScope/X2CScope.h"
+#include "X2Cscope/X2CScope.h"
 #define PI (3.14)
 /**
  Section: Global Variables

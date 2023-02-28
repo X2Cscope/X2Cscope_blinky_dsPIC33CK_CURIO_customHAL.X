@@ -17,7 +17,7 @@
 */
 #include "hal.h"
 #include "app.h"
-#include "X2CScope/X2CScope.h"
+#include "X2Cscope/X2CScope.h"
 /*
                          Main application
  */
