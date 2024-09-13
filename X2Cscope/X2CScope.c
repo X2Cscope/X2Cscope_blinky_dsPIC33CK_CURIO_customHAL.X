@@ -16,31 +16,52 @@ Copyright (c) [2012-2020] Microchip Technology Inc.
     LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES, 
     OR OTHER SIMILAR COSTS. 
 */
+/*
+ * This file is licensed according to the BSD 3-clause license as follows:
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the "Linz Center of Mechatronics GmbH" and "LCM" nor
+ *       the names of its contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL "Linz Center of Mechatronics GmbH" BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+/*
+ * This file is part of X2Cscope firmware implementation.
+ * $LastChangedDate:: 2024-09-13 13:00:00 +0200#$
+ */
+
 
 /**
- * This file shows example for X2CScope_Init implementation.
+ * This file shows example for X2Cscope_Init implementation.
  */
-#include <xc.h>
-#include "X2CScopeComm.h"
-#include "X2CScope.h"
+#include "X2CscopeComm.h"
+#include "X2Cscope.h"
 
-void X2CScope_Init(void)
+// SCOPE_SIZE is defined in X2Cscope.h, it is the size of the buffer that is sent to the host
+int8_t X2CscopeArray[X2CSCOPE_BUFFER_SIZE]; 
+
+// compalitionDate_t is defined in X2Cscope.h
+// it can be read out by the Get Device Info X2Cscope service
+compilationDate_t compilationDate = {__DATE__, __TIME__};
+
+void X2Cscope_Init(void)
 {
-    /************************************************/
-    /*    Configure IO for UART and X2Cscope        */
-    __builtin_write_RPCON(0x0000);
-    RPOR18bits.RP68R = 0x0001; //RD4/RP35->UART1:U1TX
-    RPINR18bits.U1RXR = 67;     //RD3/RP67->UART1:U1TX    
-    __builtin_write_RPCON(0x0800);
-    
-    U1BRG = 27; //115200 baud @50MHXZ UART clock
-    
-    U1MODEbits.UARTEN = 1;  //Enable UART peripheral
-    U1MODEbits.UTXEN = 1;   //Enable UART TX
-    U1MODEbits.URXEN = 1;   //Enable UART RX
-    
-    /******************************************************/
-    /* Init X2Cscope and connect communication interfaces */
-    X2CScope_HookUARTFunctions(sendSerial, receiveSerial, isReceiveDataAvailable, isSendReady);
-    X2CScope_Initialise();
+    X2Cscope_HookUARTFunctions(sendSerial, receiveSerial, isReceiveDataAvailable, isSendReady);
+    X2Cscope_Initialise((void*)X2CscopeArray, X2CSCOPE_BUFFER_SIZE, X2CSCOPE_APP_VERSION, compilationDate);
 }

@@ -50,6 +50,20 @@ void initHardware(void){
     {
         //MISRA compliance
     }
+    
+        /************************************************/
+    /*    Configure IO for UART and X2Cscope        */
+    __builtin_write_RPCON(0x0000);
+    RPOR18bits.RP68R = 0x0001; //RD4/RP35->UART1:U1TX
+    RPINR18bits.U1RXR = 67;     //RD3/RP67->UART1:U1TX    
+    __builtin_write_RPCON(0x0800);
+    
+    U1BRG = 27; //115200 baud @50MHXZ UART clock
+    
+    U1MODEbits.UARTEN = 1;  //Enable UART peripheral
+    U1MODEbits.UTXEN = 1;   //Enable UART TX
+    U1MODEbits.URXEN = 1;   //Enable UART RX
+    
 }
 
 

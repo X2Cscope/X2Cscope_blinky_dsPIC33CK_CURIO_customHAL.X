@@ -36,8 +36,8 @@ void myAppInit(void){
     
     //TMR 0; 
     TMR1 = 0x00;
-    //Period = 0.001 s; Frequency = 50000000 Hz; PR 49999; 
-    PR1 = 0xC34F;
+    //Period = 0.0001 s; Frequency = 50000000 Hz; PR 4999; 
+    PR1 = 0x4999;
     //TCKPS 1:1; PRWIP Write complete; TMWIP Write complete; TON enabled; TSIDL disabled; TCS FOSC/2; TECS T1CK; TSYNC disabled; TMWDIS disabled; TGATE disabled; 
     T1CON = 0x8000;
 
@@ -48,7 +48,7 @@ void myAppInit(void){
 
 /**
  * Generate sawtooth and sine wave. Then do sample point for X2Cscope.
- * 1ms timer interrupt
+ * 0.1ms timer interrupt
  */
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
 {
@@ -62,7 +62,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
     myStruct.rad = ((double) sawTooth) * PI / 360.0;
     myStruct.sinus = gain * sin(myStruct.rad);
     
-    X2CScope_Update(); // SAmple point of X2Cscope
+    X2Cscope_Update(); // SAmple point of X2Cscope
     
     // Clear interrupt flag in the end
     IFS0bits.T1IF = false;
